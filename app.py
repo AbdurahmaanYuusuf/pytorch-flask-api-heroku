@@ -14,6 +14,7 @@ def upload_file():
         if 'file' not in request.files:
             return redirect(request.url)
         files = request.files.getlist("images")
+        print(files)
         if not files:
             return
         
@@ -23,7 +24,7 @@ def upload_file():
             class_id, class_name = get_prediction(image_byte=img_byte)
             class_name = format_class_name(class_name)
             results.append(class_name)
-        return render_template('result.html', results=results)
+        return render_template('result.html', results=results,files=files)
     return render_template('index.html')
 
 
