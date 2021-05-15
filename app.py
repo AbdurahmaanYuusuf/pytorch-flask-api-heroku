@@ -13,12 +13,13 @@ def upload_file():
     if request.method == 'POST':
         if 'file' not in request.files:
             return redirect(request.url)
-        file = request.files.get('file')
-        if not file:
+        files = request.files.getlist("file[]")
+        if not files:
             return
-        img_bytes = file.read()
+        
         results=[]
-        for img_byte in img_bytes:
+        for file in files:
+            img_bytes = file.read()
             class_id, class_name = get_prediction(image_byte=img_byte)
             class_name = format_class_name(class_name)
             results.append(class_name)
