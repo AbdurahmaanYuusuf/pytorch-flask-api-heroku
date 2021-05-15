@@ -23,7 +23,7 @@ def upload_file():
             class_id, class_name = get_prediction(image_byte=img_byte)
             class_name = format_class_name(class_name)
             results.append(class_name)
-        return render_template('result.html', class_name=class_name)
+        return render_template('result.html', class_id=class_id,class_name=class_name)
     return render_template('index.html')
 
 
