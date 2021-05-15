@@ -24,9 +24,10 @@
     <form class="form-signin" method=post enctype=multipart/form-data>
         <img class="mb-4" src="/static/pytorch.png" alt="" width="72">
         <h1 class="h3 mb-3 font-weight-normal">Upload any image</h1>
-        <form id="styleImageForm1" method= "post" action="../imageUpload/productStyle.json" enctype="multipart/form-data">
+        <form id="styleImageForm1" method= "$post" action="../imageUpload/productStyle.json" enctype="multipart/form-data">
         <input type="file" id="my-element1" name="commonsMultipartFile[]" value="" multiple />
         </form>
+        </br>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
         <p class="mt-5 mb-3 text-muted">Built using Pytorch, Flask and Heroku</p>
     </form>
