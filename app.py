@@ -17,10 +17,12 @@ def upload_file():
         if not file:
             return
         img_bytes = file.read()
-        class_id, class_name = get_prediction(image_bytes=img_bytes)
-        class_name = format_class_name(class_name)
-        return render_template('result.html', class_id=class_id,
-                               class_name=class_name)
+        results=[]
+        for img_byte in img_bytes:
+            class_id, class_name = get_prediction(image_byte=img_byte)
+            class_name = format_class_name(class_name)
+            results.append(class_name)
+        return render_template('result.html', class_name=results)
     return render_template('index.html')
 
 
