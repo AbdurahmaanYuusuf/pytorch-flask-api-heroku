@@ -30,12 +30,11 @@ def upload_file():
             class_id, class_name = get_prediction(file)
             class_name = format_class_name(class_name)
             results.append(class_name)
-        for file in glob.glob(UPLOAD_FOLDER+'/*jpg'):
-            os.rmdir(file)
         return render_template('result.html', results=results,files=filenames)
     return render_template('index.html')
     
-
+for file in glob.glob(UPLOAD_FOLDER+'/*jpg'):
+    os.rmdir(file)
 
 if __name__ == '__main__':
     app.run(debug=True, port=int(os.environ.get('PORT', 5000)))
