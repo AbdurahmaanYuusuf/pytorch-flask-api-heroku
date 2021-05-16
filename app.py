@@ -23,14 +23,14 @@ def upload_file():
             return
             
         filenames=[]
-        for file in glob.glob(UPLOAD_FOLDER+'/*'):
+        for file in glob.glob(UPLOAD_FOLDER+'/*jpg'):
             filenames.append(file)
         results=[]
         for file in glob.glob(UPLOAD_FOLDER+'/*.jpg'):
             class_id, class_name = get_prediction(file)
             class_name = format_class_name(class_name)
             results.append(class_name)
-        for file in glob.glob(UPLOAD_FOLDER+'/*'):
+        for file in glob.glob(UPLOAD_FOLDER+'/*jpg'):
             os.rmdir(file)
         return render_template('result.html', results=results,files=filenames)
     return render_template('index.html')
