@@ -7,6 +7,8 @@ from inference import get_prediction
 from commons import format_class_name
 
 app = Flask(__name__)
+UPLOAD_FOLDER = 'static/uploads'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     
 
 @app.route('/', methods=['GET', 'POST'])
@@ -14,16 +16,17 @@ def upload_file():
     if request.method == 'POST':
         if 'files[]' not in request.files:
             return redirect(request.url)
-        files_src = request.files.getlist('files[]')
-        if not files_src:
+        files = request.files.getlist('files[]')
+        for file in files:
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
+        if not files:
             return
-        files_dst='/static/uploads'
-        files = shutil.copytree(files_src, files_dst, copy_function = shutil.copy)
+            
         filenames=[]
-        for file in glob.glob(files+'/*.jpg'):
+        for file in glob.glob(UPLOAD_FOLDER+'/*.jpg'):
             filenames.append(file)
         results=[]
-        for file in glob.glob(files+'/*.jpg'):
+        for file in glob.glob(UPLOAD_FOLDER+'/*.jpg'):
             class_id, class_name = get_prediction(file)
             class_name = format_class_name(class_name)
             results.append(class_name)
