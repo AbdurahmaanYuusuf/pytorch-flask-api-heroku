@@ -35,16 +35,16 @@
            var files={{files|tojson}};
            var results={{results|tojson}};
            table = document.getElementById("table");
-           for(var i = 0; i <files.length; i++)
+           for(i = 0; i <files.length; i++)
            {
                // create a new row
                var newRow = table.insertRow(table.length);
-               for(var j = 0; j < 2; j++)
+               for(var j = 0; j < table.length; j++)
                {
                    // create a new cell
                    var cell = newRow.insertCell(j);
                    if (j==0){cell.innerHTML = files[i];}
-                   else{cell.innerHTML = results[i];}
+                   if (j==1){cell.innerHTML = results[i];}
                }
            }
         </script>   
