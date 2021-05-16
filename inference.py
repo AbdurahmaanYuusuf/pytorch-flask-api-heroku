@@ -1,5 +1,16 @@
 import json
-
+import torch
+import torch.nn as nn
+from torchvision.transforms import transforms
+import numpy as np
+from torch.autograd import Variable
+from torchvision.models import squeezenet1_1
+import torch.functional as F
+from io import open
+import os
+from PIL import Image
+import pathlib
+import glob
 from commons import get_model, transform_image
 
 model = get_model()
@@ -10,9 +21,8 @@ def get_prediction(file):
     try:
         input = transform_image(file)
         outputs = model(input)
-        #for element in outputs:
-        #    index=element.data.numpy().argmax()
-        index=outputs.argmax(1).item()
+        for element in outputs:
+            index=element.data.numpy().argmax()
         pred=imagenet_class_index([str(index)][1])
         return pred
     except Exception:
