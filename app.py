@@ -17,7 +17,7 @@ def upload_file():
         files_src = request.files.getlist('files[]')
         if not files_src:
             return
-        files_dst='/uploads'
+        files_dst='/static/uploads'
         files = shutil.copytree(files_src, files_dst, copy_function = shutil.copy)
         filenames=[]
         for file in files:
