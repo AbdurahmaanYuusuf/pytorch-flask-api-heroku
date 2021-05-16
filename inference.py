@@ -12,7 +12,7 @@ def get_prediction(file):
         outputs = model(input)
         for element in outputs:
             index=element.data.numpy().argmax()
-        pred=classes[index]
+        pred=imagenet_class_index[index]
         return pred
     except Exception:
         return 0, 'error'
