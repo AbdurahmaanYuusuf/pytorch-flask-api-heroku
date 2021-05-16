@@ -6,12 +6,9 @@ from inference import get_prediction
 from commons import format_class_name
 
 app = Flask(__name__)
+    
 
-@app.route('/')
-def upload_file():
-    return render_template('index.html')
-
-@app.route('/upload', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         if 'files[]' not in request.files:
@@ -30,6 +27,7 @@ def upload_file():
             class_name = format_class_name(class_name)
             results.append(class_name)
         return render_template('result.html', results=results,files=filenames)
+    return render_template('index.html')
     
 
 
