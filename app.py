@@ -30,7 +30,7 @@ def upload_file():
             class_id, class_name = get_prediction(file)
             class_name = format_class_name(class_name)
             results.append(class_name)
-        os.rmdir(UPLOAD_FOLDER)
+        os.rmdir('static/uploads/')
         return render_template('result.html', results=results,files=filenames)
     return render_template('index.html')
     
