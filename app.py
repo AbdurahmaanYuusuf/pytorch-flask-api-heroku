@@ -7,10 +7,9 @@ from inference import get_prediction
 from commons import format_class_name
 
 app = Flask(__name__)
-os.rmdir('static/uploads')
+
 UPLOAD_FOLDER = 'static/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-    
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
@@ -31,6 +30,8 @@ def upload_file():
             class_id, class_name = get_prediction(file)
             class_name = format_class_name(class_name)
             results.append(class_name)
+        for file in glob.glob(UPLOAD_FOLDER+'/*'):
+            os.rmdir(file)
         return render_template('result.html', results=results,files=filenames)
     return render_template('index.html')
     
