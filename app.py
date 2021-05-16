@@ -23,14 +23,22 @@ def upload_file():
             return
             
         filenames=[]
-        for file in glob.glob(UPLOAD_FOLDER+'/*.jpg'):
+        for file in glob.glob(UPLOAD_FOLDER+'/*'):
             filenames.append(file)
         results=[]
         for file in glob.glob(UPLOAD_FOLDER+'/*.jpg'):
             class_id, class_name = get_prediction(file)
             class_name = format_class_name(class_name)
             results.append(class_name)
+        try:
+            os.rmdir(UPLOAD_FOLDER)
+        except OSError as e:
+            print("Error: %s : %s" % (UPLOAD_FOLDER, e.strerror))
         return render_template('result.html', results=results,files=filenames)
+    try:
+            os.rmdir(UPLOAD_FOLDER)
+        except OSError as e:
+            print("Error: %s : %s" % (UPLOAD_FOLDER, e.strerror))
     return render_template('index.html')
     
 
