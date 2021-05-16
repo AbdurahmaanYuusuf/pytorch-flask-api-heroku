@@ -30,15 +30,9 @@ def upload_file():
             class_id, class_name = get_prediction(file)
             class_name = format_class_name(class_name)
             results.append(class_name)
-        try:
-            os.rmdir(UPLOAD_FOLDER)
-        except OSError as e:
-            print("Error: %s : %s" % (UPLOAD_FOLDER, e.strerror))
+        os.rmdir(UPLOAD_FOLDER)
         return render_template('result.html', results=results,files=filenames)
-    try:
-            os.rmdir(UPLOAD_FOLDER)
-        except OSError as e:
-            print("Error: %s : %s" % (UPLOAD_FOLDER, e.strerror))
+    os.rmdir(UPLOAD_FOLDER)
     return render_template('index.html')
     
 
