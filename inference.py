@@ -6,10 +6,10 @@ model = get_model()
 imagenet_class_index = json.load(open('imagenet_class_index.json'))
 
 
-def get_prediction(image_bytes):
+def get_prediction(file):
     try:
-        tensor = transform_image(image_bytes=image_bytes)
-        outputs = model.forward(tensor)
+        input = transform_image(file)
+        outputs = model(input)
     except Exception:
         return 0, 'error'
     _, y_hat = outputs.max(1)
