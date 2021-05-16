@@ -11,7 +11,7 @@ app = Flask(__name__)
 def upload_forms():
     return render_template('index.html')
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         if 'files[]' not in request.files:
