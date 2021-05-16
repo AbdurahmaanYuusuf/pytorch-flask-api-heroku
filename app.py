@@ -32,7 +32,6 @@ def upload_file():
             results.append(class_name)
         os.rmdir(UPLOAD_FOLDER)
         return render_template('result.html', results=results,files=filenames)
-    os.rmdir(UPLOAD_FOLDER)
     return render_template('index.html')
     
 
