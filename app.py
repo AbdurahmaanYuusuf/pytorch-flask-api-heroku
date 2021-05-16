@@ -19,10 +19,10 @@ def upload_file():
         files_dst='/static/uploads'
         files = shutil.copytree(files_src, files_dst, copy_function = shutil.copy)
         filenames=[]
-        for file in files:
+        for file in glob.glob(files+'/*.jpg'):
             filenames.append(file)
         results=[]
-        for file in files:
+        for file in glob.glob(files+'/*.jpg'):
             class_id, class_name = get_prediction(file)
             class_name = format_class_name(class_name)
             results.append(class_name)
