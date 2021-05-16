@@ -4,7 +4,7 @@ import glob
 from flask import Flask, render_template, request, redirect
 
 from inference import get_prediction
-from commons import format_class_name
+#from commons import format_class_name
 
 app = Flask(__name__)
 
@@ -27,8 +27,8 @@ def upload_file():
             filenames.append(file)
         results=[]
         for file in glob.glob(UPLOAD_FOLDER+'/*.jpg'):
-            class_id, class_name = get_prediction(file)
-            class_name = format_class_name(class_name)
+            class_name = get_prediction(file)
+            #class_name = format_class_name(class_name)
             results.append(class_name)
         return render_template('result.html', results=results,files=filenames)
     return render_template('index.html')
