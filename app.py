@@ -1,5 +1,4 @@
 import os
-import shutil
 
 from flask import Flask, render_template, request, redirect
 
@@ -21,8 +20,7 @@ def upload_file():
         files = shutil.copytree(files_src, files_dst, copy_function = shutil.copy)
         filenames=[]
         for file in files:
-            file_name=file.filename
-            filenames.append(file_name)
+            filenames.append(file)
         results=[]
         for file in files:
             class_id, class_name = get_prediction(file)
