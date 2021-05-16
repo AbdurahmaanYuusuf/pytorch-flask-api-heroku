@@ -7,13 +7,16 @@ from commons import format_class_name
 
 app = Flask(__name__)
 
+@app.route('/')
+def upload_forms():
+    return render_template('index.html')
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
-        if 'file' not in request.files:
+        if 'files[]' not in request.files:
             return redirect(request.url)
-        files = request.files.getlist("images")
+        files = request.files.getlist('files[]')
         if not files:
             return
         filenames=[]
@@ -27,7 +30,7 @@ def upload_file():
             class_name = format_class_name(class_name)
             results.append(class_name)
         return render_template('result.html', results=results,files=filenames)
-    return render_template('index.html')
+    
 
 
 if __name__ == '__main__':
