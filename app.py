@@ -8,7 +8,7 @@ from commons import format_class_name
 app = Flask(__name__)
 
 @app.route('/')
-def upload_forms():
+def upload_file():
     return render_template('index.html')
 
 @app.route('/upload', methods=['GET', 'POST'])
