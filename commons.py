@@ -1,27 +1,18 @@
 import torch
-import torch.nn as nn
 from torchvision.transforms import transforms
 import numpy as np
 from torch.autograd import Variable
-import torch.functional as F
 from io import open
 import os
 from PIL import Image
-import pathlib
 import glob
-import cv2
-
-import io
-
-
-from PIL import Image
 from torchvision import models
-import torchvision.transforms as transforms
 
 
 def get_model():
     model = models.densenet121(pretrained=True)
-    model.cuda()
+    if torch.cuda.is_available():
+        model.cuda()
     model.eval()
     return model
 
