@@ -1,3 +1,16 @@
+import torch
+import torch.nn as nn
+from torchvision.transforms import transforms
+import numpy as np
+from torch.autograd import Variable
+import torch.functional as F
+from io import open
+import os
+from PIL import Image
+import pathlib
+import glob
+import cv2
+
 import io
 
 
@@ -13,14 +26,21 @@ def get_model():
 
 
 def transform_image(image_bytes):
-    my_transforms = transforms.Compose([transforms.Resize(255),
+    my_transforms = transforms.Compose([transforms.Resize(256),
                                         transforms.CenterCrop(224),
                                         transforms.ToTensor(),
                                         transforms.Normalize(
                                             [0.485, 0.456, 0.406],
                                             [0.229, 0.224, 0.225])])
-    image = Image.open(io.BytesIO(image_bytes))
-    return my_transforms(image).unsqueeze(0)
+    
+    image = Image.open(image_bytes)    
+    image_tensor=transformer(image).float()
+    image_tensor=image_tensor.unsqueeze_(0)
+    if torch.cuda.is_available():
+        image_tensor.cuda()
+        
+    input=Variable(image_tensor)
+    return input
 
 
 # ImageNet classes are often of the form `can_opener` or `Egyptian_cat`
