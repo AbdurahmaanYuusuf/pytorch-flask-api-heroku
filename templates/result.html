@@ -24,16 +24,30 @@
     <form class="form-signin" method=post enctype=multipart/form-data>
         <img class="mb-4" src="/static/pytorch.png" alt="" width="72">          
         <p class="mt-5 mb-3 text-muted">Built using Pytorch, Flask and Heroku</p>
+        <table id="table" border="1">
+          <!-- The Row Number 0 -->
+            <tr>
+                <th>patient_id</th>
+                <th>Result</th>
+            </tr>
+        </table>
         <script>
-          var files=files;
-          var results=results;
-          var mytable = "<table cellpadding=\"0\" cellspacing=\"0\"><tbody><tr>";
-          for (i = 0; i < files.length; i++) {
-              mytable += "<td>"+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+ files[i] +"&nbsp:&nbsp" + results[i]  + "</td></tr><tr>";
-          }
-          mytable += "</tr></tbody></table>";
-          document.write(mytable);
-        </script>  
+           var files=files;
+           var results=results;
+           table = document.getElementById("table");
+           for(var i = 0; i <files.length; i++)
+           {
+               // create a new row
+               var newRow = table.insertRow(table.length);
+               for(var j = 0; j < 2; j++)
+               {
+                   // create a new cell
+                   var cell = newRow.insertCell(j);
+                   if (j==0){cell.innerHTML = files[i];}
+                   else{cell.innerHTML = results[i];}
+               }
+           }
+        </script>   
     </form>   
     <script src="//code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
