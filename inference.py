@@ -10,8 +10,12 @@ def get_prediction(file):
     try:
         input = transform_image(file)
         outputs = model(input)
+        for element in outputs:
+            index=element.data.numpy().argmax()
+        pred=classes[index]
+        return pred
     except Exception:
         return 0, 'error'
-    _, y_hat = outputs.max(1)
-    predicted_idx = str(y_hat.item())
-    return imagenet_class_index[predicted_idx]
+    #_, y_hat = outputs.max(1)
+    #predicted_idx = str(y_hat.item())
+    #return imagenet_class_index[predicted_idx]
