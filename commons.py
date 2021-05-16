@@ -21,6 +21,7 @@ import torchvision.transforms as transforms
 
 def get_model():
     model = models.densenet121(pretrained=True)
+    model.cuda()
     model.eval()
     return model
 
