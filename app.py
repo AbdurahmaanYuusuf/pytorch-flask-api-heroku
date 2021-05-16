@@ -1,5 +1,5 @@
 import os
-
+import shutil
 from flask import Flask, render_template, request, redirect
 
 from inference import get_prediction
