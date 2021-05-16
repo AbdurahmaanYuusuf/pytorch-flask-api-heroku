@@ -23,7 +23,7 @@ def upload_file():
             return
             
         filenames=[]
-        for file in glob.glob(UPLOAD_FOLDER+'/*jpg'):
+        for file in glob.glob(UPLOAD_FOLDER+'/*'):
             filenames.append(file)
         results=[]
         for file in glob.glob(UPLOAD_FOLDER+'/*.jpg'):
