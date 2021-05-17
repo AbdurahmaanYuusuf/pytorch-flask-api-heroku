@@ -11,8 +11,6 @@ from torchvision import models
 
 def get_model():
     model = models.densenet121(pretrained=True)
-    if torch.cuda.is_available():
-        model.cuda()
     model.eval()
     return model
 
@@ -27,10 +25,7 @@ def transform_image(image_bytes):
     
     image = Image.open(image_bytes)    
     image_tensor=transformer(image).float()
-    image_tensor=image_tensor.unsqueeze_(0)
-    if torch.cuda.is_available():
-        image_tensor.cuda()
-        
+    image_tensor=image_tensor.unsqueeze_(0)   
     input=Variable(image_tensor)
     return input
 
