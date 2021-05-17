@@ -1,15 +1,9 @@
 import json
 import torch
-import torch.nn as nn
-from torchvision.transforms import transforms
 import numpy as np
 from torch.autograd import Variable
-from torchvision.models import squeezenet1_1
 import torch.functional as F
 from io import open
-import os
-from PIL import Image
-import pathlib
 import glob
 from commons import get_model, transform_image
 
