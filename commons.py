@@ -16,7 +16,7 @@ def get_model():
 
 
 def transform_image(image_bytes):
-    my_transforms = transforms.Compose([transforms.Resize(256),
+    transformer = transforms.Compose([transforms.Resize(256),
                                         transforms.CenterCrop(224),
                                         transforms.ToTensor(),
                                         transforms.Normalize(
