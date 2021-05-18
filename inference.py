@@ -9,6 +9,7 @@ from commons import get_model, transform_image
 
 model = get_model()
 imagenet_class_index = json.load(open('imagenet_class_index.json'))
+classes=['abnormal', 'normal']
 
 
 def get_prediction(file):
@@ -17,7 +18,7 @@ def get_prediction(file):
         outputs = model(input)
         for element in outputs:
             index=element.data.numpy().argmax()
-        pred=imagenet_class_index[str(index)][1]
+        pred=classes[index]
         return pred
     except Exception:
         return 0, 'error'
