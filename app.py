@@ -31,7 +31,7 @@ def upload_file():
                 class_name = get_prediction(file)
                 #class_name = format_class_name(class_name)
                 results.append(class_name)
-            except:
+            except Exception:
                 return "Not an image"
         return render_template('result.html', results=results,files=filenames)
     return render_template('index.html')
