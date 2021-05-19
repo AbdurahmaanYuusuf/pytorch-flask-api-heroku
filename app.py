@@ -26,7 +26,7 @@ def upload_file():
         for file in glob.glob(UPLOAD_FOLDER+'/*'):
             filenames.append(file)
         results=[]
-        for file in glob.glob(UPLOAD_FOLDER+'/*'):
+        for file in glob.glob(UPLOAD_FOLDER+'/*.png'):
             class_name = get_prediction(file)
             results.append(class_name)
         print(filenames)
