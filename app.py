@@ -29,13 +29,15 @@ def upload_file():
         for file in glob.glob(UPLOAD_FOLDER+'/*'):
             class_name = get_prediction(file)
             results.append(class_name)
-        print(filenames)
-        print(results)
+        #print(filenames)
+        #print(results)
+        for file in glob.glob(UPLOAD_FOLDER+'/*'):
+            os.remove(file)
         return render_template('result.html', results=results,files=filenames)
     return render_template('index.html')
     
-for file in glob.glob(UPLOAD_FOLDER+'/*'):
-    os.remove(file)
+#for file in glob.glob(UPLOAD_FOLDER+'/*'):
+#    os.remove(file)
 
 if __name__ == '__main__':
     app.run(debug=True, port=int(os.environ.get('PORT', 5000)))
