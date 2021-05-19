@@ -25,7 +25,7 @@ def get_prediction(file):
         else:
             return "abnormal"
     except Exception:
-        return 0, 'error'
+        #return 0, 'error'
     #_, y_hat = outputs.max(1)
     #predicted_idx = str(y_hat.item())
     #return imagenet_class_index[predicted_idx]
