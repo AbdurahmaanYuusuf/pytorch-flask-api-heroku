@@ -19,7 +19,7 @@ def get_prediction(file):
         for element in outputs:
             index=element.data.numpy().argmax()
         pred=imagenet_class_index[str(index)][1]
-        if pred%2==0:
+        if index%2==0:
             return "normal"
         else:
             return "abnormal"
