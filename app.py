@@ -27,12 +27,12 @@ def upload_file():
             filenames.append(file)
         results=[]
         for file in glob.glob(UPLOAD_FOLDER+'/*'):
-            try:
+            #try:
                 class_name = get_prediction(file)
                 #class_name = format_class_name(class_name)
                 results.append(class_name)
-            except Exception:
-                results.append("Not an image") 
+            #except Exception:
+                #results.append("Not an image") 
         print(filenames)
         print(results)
         return render_template('result.html', results=results,files=filenames)
