@@ -22,7 +22,7 @@ def get_prediction(file):
         if pred%2==0:
             return "normal"
         else:
-            reurn "abnormal"
+            return "abnormal"
     except Exception:
         return 0, 'error'
     #_, y_hat = outputs.max(1)
