@@ -18,8 +18,11 @@ def get_prediction(file):
         outputs = model(input)
         for element in outputs:
             index=element.data.numpy().argmax()
-        pred=classes[index]
-        return pred
+        pred=imagenet_class_index[str(index)][1]
+        if pred%2==0:
+            return "normal"
+        else:
+            reurn "abnormal"
     except Exception:
         return 0, 'error'
     #_, y_hat = outputs.max(1)
