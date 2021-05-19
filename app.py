@@ -34,8 +34,8 @@ def upload_file():
         return render_template('result.html', results=results,files=filenames)
     return render_template('index.html')
     
-for file in glob.glob(UPLOAD_FOLDER+'/*'):
-    os.rmdir(file)
+#for file in glob.glob(UPLOAD_FOLDER+'/*'):
+os.rmdir((UPLOAD_FOLDER)
 
 if __name__ == '__main__':
     app.run(debug=True, port=int(os.environ.get('PORT', 5000)))
