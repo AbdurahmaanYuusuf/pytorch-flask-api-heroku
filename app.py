@@ -33,6 +33,8 @@ def upload_file():
                 results.append(class_name)
             except Exception:
                 results.append("Not an image") 
+        print(filenames)
+        print(results)
         return render_template('result.html', results=results,files=filenames)
     return render_template('index.html')
     
