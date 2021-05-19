@@ -13,18 +13,18 @@ classes=['abnormal', 'normal']
 
 
 def get_prediction(file):
-    try:
-        input = transform_image(file)
-        outputs = model(input)
-        for element in outputs:
-            index=element.data.numpy().argmax()
+    #try:
+    input = transform_image(file)
+    outputs = model(input)
+    for element in outputs:
+        index=element.data.numpy().argmax()
         #pred=imagenet_class_index[str(index)][1]
-        print(index)
-        if index%2==0:
-            return "normal"
-        else:
-            return "abnormal"
-    except Exception:
+    print(index)
+    if index%2==0:
+        return "normal"
+    else:
+        return "abnormal"
+    #except Exception:
         #return 0, 'error'
     #_, y_hat = outputs.max(1)
     #predicted_idx = str(y_hat.item())
