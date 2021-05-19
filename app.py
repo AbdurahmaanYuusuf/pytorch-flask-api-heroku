@@ -36,7 +36,7 @@ def upload_file():
         return render_template('result.html', results=results,files=filenames)
     return render_template('index.html')
     
-for file in glob.glob(UPLOAD_FOLDER+'/*jpg'):
+for file in glob.glob(UPLOAD_FOLDER+'/*'):
     os.rmdir(file)
 
 if __name__ == '__main__':
