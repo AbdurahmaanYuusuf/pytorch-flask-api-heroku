@@ -25,7 +25,7 @@ def transform_image(image_bytes):
     
     image = Image.open(image_bytes)    
     if image.mode!="RGB":
-        image.convert("RGB")
+        image=image.convert("RGB")
     image_tensor=transformer(image).float()
     image_tensor=image_tensor.unsqueeze_(0)   
     input=Variable(image_tensor)
