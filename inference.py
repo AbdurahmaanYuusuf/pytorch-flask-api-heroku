@@ -18,7 +18,8 @@ def get_prediction(file):
         outputs = model(input)
         for element in outputs:
             index=element.data.numpy().argmax()
-        pred=imagenet_class_index[str(index)][1]
+        #pred=imagenet_class_index[str(index)][1]
+        print(index)
         if index%2==0:
             return "normal"
         else:
